@@ -66,7 +66,7 @@ abstract class Command_manager
         ];
         try {
             \dibi::query("INSERT INTO `fb_services`", $vals,
-                "ON DUPLICATE KEY UPDATE %n = values(`sing_online`)", $service);
+                "ON DUPLICATE KEY UPDATE %n = values(%n)", $service, $service);
             if ($service_status) {
                 $this->send_message("All right, I will send you a notification when " . $text . ".");
             } else {
@@ -85,6 +85,11 @@ abstract class Command_manager
                 "name" => "sing_online",
                 "enable" => "Sing goes online",
                 "disable" => "Sing goes online disable"
+            ],
+            "reddit" => [
+                "name" => "reddit",
+                "enable" => "Reddit patch updates",
+                "disable" => "Reddit patch updates disable"
             ]
         ];
     }
