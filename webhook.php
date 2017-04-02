@@ -7,4 +7,4 @@ include "vendor/autoload.php";
 include "db-connect.php";
 
 $request = filter_var_array($_REQUEST);
-$webhook = new \Sing\Webhook($token, $verify_token, $request);
+$webhook = new \Sing\Webhook(Settings::TOKEN, Settings::VERIFY_TOKEN, $request);

@@ -20,7 +20,8 @@ class Availablecommands extends Command_manager
             "my - shows your subscribed services \n\r" .
             "available commands \n\r" .
             "available services \n\r" .
-            " \n\r" .
+            "reddit - get informations about last patch from /user/SirBelvedere\n\r" .
+            "sing online - tells you if Sing is streaming\n\r" .
             " \n\r"
         );
     }

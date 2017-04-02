@@ -31,8 +31,15 @@ abstract class Command_manager
     {
         $pixmax_buttons = [];
         foreach ($buttons as $button) {
-            $pixmax_buttons[] = new \pimax\Messages\MessageButton(\pimax\Messages\MessageButton::TYPE_POSTBACK,
-                $button);
+            if (isset($button["url"])) {
+                $pixmax_buttons[] = new \pimax\Messages\MessageButton(\pimax\Messages\MessageButton::TYPE_WEB,
+                    $button["title"],
+                    $button["url"]);
+            } else {
+                $pixmax_buttons[] = new \pimax\Messages\MessageButton(\pimax\Messages\MessageButton::TYPE_POSTBACK,
+                    $button);
+            }
+
         }
         $message = new \pimax\Messages\StructuredMessage($this->message['sender']['id'],
             \pimax\Messages\StructuredMessage::TYPE_BUTTON, [
