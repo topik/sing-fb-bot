@@ -1,0 +1,16 @@
+{
+    "name": "topik/sing-fb-bot",
+    "description": "Facebook updates bot",
+    "require": {
+        "dibi/dibi": "^3.0",
+        "pimax/fb-messenger-php": "^1.0",
+        "atrox/matcher": "^1.1",
+        "tracy/tracy": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "Tomáš Opekar",
+            "email": "tomas.opekar@golemos.com"
+        }
+    ]
+}
