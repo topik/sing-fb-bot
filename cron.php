@@ -61,5 +61,5 @@ if (count($user_list)) {
                 ]
             ));
     }
-    //$sing->update($user_list);
+    $sing->update($user_list);
 }

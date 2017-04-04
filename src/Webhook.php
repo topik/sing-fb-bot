@@ -38,10 +38,14 @@ class Webhook
         $this->parse_data_from_php_input();
 
         $this->save_command();
-        if ($_REQUEST["test"]) {
-            $this->command = $_REQUEST["test"];
-        }
         http_response_code(200);
+        if ($this->is_register_request()) {
+            $welcome          = new \Sing\Commands\Error_command();
+            $welcome->bot     = $this->bot;
+            $welcome->message = $this->message;
+            $welcome->welcome();
+            return;
+        }
         $this->command_switch();
     }
 
@@ -50,15 +54,24 @@ class Webhook
         $command = ucfirst(strtolower($this->command));
         $command = preg_replace('/\s+/', '', $command);
         $method  = 'Sing\\Commands\\' . $command;
-        if (!class_exists($method)) {
+        \Tracy\Debugger::log($command);
+        if ($command != "Pastelist" and in_array(substr($command, 0, 5), ["Paste", "Pasta"])) {
+            $function          = new \Sing\Commands\Twitch_paste();
+            $function->command = $command;
+        } elseif (!class_exists($method)) {
             $this->send_error_message();
             return;
+        } else {
+            $function = new $method;
         }
-        $function          = new $method;
         $function->bot     = $this->bot;
         $function->message = $this->message;
         $function->run();
+    }
 
+    private function is_register_request()
+    {
+        return (!empty($this->message['optin']['ref']));
     }
 
     private function send_error_message()

@@ -39,6 +39,6 @@ class Singonline extends Command_manager
 
     public function get_api_request()
     {
-        return json_decode(file_get_contents('https://api.twitch.tv/kraken/streams/Arise_3012?client_id=' . \Settings::TWITCH_CLIENT_ID));;
+        return json_decode(file_get_contents('https://api.twitch.tv/kraken/streams/Arise_3012?client_id=' . \Settings::TWITCH_CLIENT_ID));
     }
 }
