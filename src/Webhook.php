@@ -58,6 +58,9 @@ class Webhook
         if ($command != "Pastelist" and in_array(substr($command, 0, 5), ["Paste", "Pasta"])) {
             $function          = new \Sing\Commands\Twitch_paste();
             $function->command = $command;
+        } elseif (in_array(substr($command, -6, 6), ["online"])) {
+            $function          = new \Sing\Commands\Online();
+            $function->command = $command;
         } elseif (!class_exists($method)) {
             $this->send_error_message();
             return;

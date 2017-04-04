@@ -18,7 +18,5 @@ class Singgoesonline extends Command_manager
         }
 
         $this->register_service("sing_online", 1, "Sing starts to stream");
-
-
     }
 }
